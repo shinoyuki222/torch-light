@@ -1,5 +1,5 @@
 import torch
-
+import numpy as np
 from const import *
 
 
@@ -56,7 +56,7 @@ class Corpus(object):
 
     def parse(self):
         sents, ignore_count = [], 0
-        for sentences in open("data/poetry"):
+        for sentences in open("data/poetry",encoding='utf-8'):
             sentences = sentences.strip()
             words = [w for w in sentences if self.is_ch(w)]
             if len(words) != self._max_len:
@@ -78,7 +78,7 @@ class Corpus(object):
 
     def load_w2v(self):
         w2c_dict = {}
-        for line in open(self.w2v_file):
+        for line in open(self.w2v_file,encoding='utf-8'):
             temp = line.strip().split(" ")
 
             if len(temp) < 10:
