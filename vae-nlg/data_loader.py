@@ -3,8 +3,11 @@ import torch
 from const import *
 
 
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+use_cuda = torch.cuda.is_available()
+
 class DataLoader(object):
-    def __init__(self, src_sents, max_len, batch_size, cuda=True):
+    def __init__(self, src_sents, max_len, batch_size, cuda=use_cuda):
         self.cuda = cuda
         self.sents_size = len(src_sents)
         self._step = 0
